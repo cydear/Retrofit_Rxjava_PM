@@ -1,0 +1,154 @@
+apply plugin: 'com.android.application'
+/*retrolambda*/
+apply plugin: 'me.tatarka.retrolambda'
+
+def environment = hasProperty('env') ? env : 'test'
+
+def buildTime() {
+    def date = new Date()
+    def formattedDate = date.format('yyyyMMdd')
+    return formattedDate
+}
+
+Properties props = new Properties()
+props.load(new FileInputStream(file('signing.properties')))
+
+android {
+    compileSdkVersion 25
+    buildToolsVersion "25.0.2"
+    defaultConfig {
+        applicationId "com.rr.pm"
+        minSdkVersion 16
+        targetSdkVersion 25
+        versionCode 1
+        versionName "1.0"
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file('debug.keystore')
+        }
+        release {
+            keyAlias props['KEY_ALIAS']
+            keyPassword props['KEY_PASSWORD']
+            storeFile file(props['STOREFILE_FILE'])
+            storePassword props['KEYSTORE_PASSWORD']
+        }
+    }
+
+    buildTypes {
+        //debug模式
+        debug {
+            signingConfig signingConfigs.debug
+
+            //debug模式下关闭lint检查,节省编译时间
+            tasks.whenTaskAdded { task ->
+                if (task.name.equals("lint")) {
+                    task.enabled = false
+                }
+            }
+        }
+
+        release {
+            signingConfig signingConfigs.release
+            zipAlignEnabled true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            applicationVariants.all { variant ->
+                variant.outputs.each { output ->
+                    if ('release'.equals(variant.buildType.name)
+                            && output.outputFile != null
+                            && output.outputFile.name.endsWith('.apk')) {
+                        def apkFile = new File(
+                                output.outputFile.getParent(),
+                                "PM_${variant.flavorName}_v${variant.versionName}_${buildTime()}.apk")
+                        output.outputFile = apkFile
+                    }
+                }
+            }
+        }
+    }
+
+    dexOptions {
+        //增加java的堆内存
+        javaMaxHeapSize = "4g"
+        //解决预编译冲突问题
+        //preDexLibraries = false
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/rxjava.properties'
+    }
+
+    sourceSets {
+        main {
+            jni.srcDirs = []  // 注释掉时为每次编译so文件,不注释掉时不编译so文件
+        }
+    }
+
+    def flavors = file('channel.txt')
+    productFlavors {
+        flavors.eachLine { line ->
+            line = line.trim();
+            if (!line.equals("")) {
+                "$line" {
+
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    /*android support v7*/
+    compile 'com.android.support:appcompat-v7:25.3.1'
+    /*material design*/
+    compile 'com.android.support:design:25.3.1'
+    /*multidex*/
+    compile 'com.android.support:multidex:1.0.1'
+    /*rxjava支持libs*/
+    compile 'io.reactivex.rxjava2:rxjava:2.0.8'
+    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    /*retrofit2.0支持libs*/
+    compile 'com.squareup.retrofit2:retrofit:2.2.0'
+    compile 'com.squareup.retrofit2:converter-scalars:2.2.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.2.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    /*okhttp3.0*/
+    compile 'com.squareup.okhttp3:okhttp:3.7.0'
+    /*okhttp日志打印*/
+    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    compile 'org.jetbrains:annotations-java5:15.0'
+    /*stetho*/
+    compile 'com.facebook.stetho:stetho:1.5.0'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
+    /*shiro*/
+    compile 'org.apache.shiro:shiro-core:1.2.4'
+    compile 'cn.pedant.sweetalert:library:1.3'
+    /*日志打印*/
+    compile 'com.orhanobut:logger:1.15'
+    /*butterknife*/
+    compile 'com.jakewharton:butterknife:8.5.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.5.1'
+    /*glide*/
+    compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.github.bumptech.glide:okhttp3-integration:1.4.0@aar'
+    /*glide transformation*/
+    compile 'jp.wasabeef:glide-transformations:2.0.1'
+    /*eventbus*/
+    compile 'org.greenrobot:eventbus:3.0.0'
+}

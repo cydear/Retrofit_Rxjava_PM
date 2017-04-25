@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".biz.MainActivity">
+
+    <include layout="@layout/view_toolbar" />
+
+    <Button
+        android:id="@+id/btn_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dip"
+        android:text="Request" />
+
+    <Button
+        android:id="@+id/btn_builder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Builder" />
+
+    <Button
+        android:id="@+id/btn_observer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Builder" />
+
+    <Button
+        android:id="@+id/btn_clone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cloneable" />
+
+    <Button
+        android:id="@+id/btn_policy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Policy" />
+</LinearLayout>
