@@ -13,6 +13,9 @@ import com.rr.pm.designpattern.clone.Person;
 import com.rr.pm.designpattern.observer.Observable;
 import com.rr.pm.designpattern.observer.Observer;
 import com.rr.pm.designpattern.observer.Weather;
+import com.rr.pm.designpattern.proxy_dynamic.ProxySubject;
+import com.rr.pm.designpattern.proxy_dynamic.RealSubject;
+import com.rr.pm.designpattern.proxy_dynamic.Subject;
 import com.rr.pm.designpattern.strategy.AirTravel;
 import com.rr.pm.designpattern.strategy.TrainTravel;
 import com.rr.pm.designpattern.strategy.Travel;
@@ -25,8 +28,10 @@ import com.rr.pm.http.RetrofitClient;
 import com.rr.pm.http.RxUtil;
 import com.rr.pm.http.service.ApiService;
 import com.rr.pm.util.LogUtils;
+import com.rr.pm.util.ToastUtils;
 import com.xianglin.xlnodecore.common.service.facade.base.BaseReq;
 
+import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 
 /**
@@ -51,6 +56,7 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
         findViewById(R.id.btn_observer).setOnClickListener(this);
         findViewById(R.id.btn_clone).setOnClickListener(this);
         findViewById(R.id.btn_policy).setOnClickListener(this);
+        findViewById(R.id.btn_dynamic_proxy).setOnClickListener(this);
         setToolBarTitle("首页");
         showBack(false);
         showRightTV(false);
@@ -73,7 +79,17 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
             }
         } else if (id == R.id.btn_policy) {
             policy();
+        } else if (id == R.id.btn_dynamic_proxy) {
+            dynamic_proxy();
         }
+    }
+
+    private void dynamic_proxy() {
+        Subject subject = new RealSubject();
+        ProxySubject proxy = new ProxySubject(subject);
+        Subject sub = (Subject) Proxy.newProxyInstance(subject.getClass().getClassLoader(), subject.getClass().getInterfaces(), proxy);
+        int sum = sub.operate(10, 25);
+        ToastUtils.show(this, "sum=" + sum);
     }
 
     private void request() {
