@@ -21,55 +21,55 @@ public class LogUtils {
     }
 
     public static void log(int priority, String tag, String message, Throwable throwable) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.log(priority, tag, message, throwable);
         }
     }
 
     public static void d(String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.d(message, args);
         }
     }
 
     public static void d(Object object) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.d(object);
         }
     }
 
     public static void e(String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.e(null, message, args);
         }
     }
 
     public static void e(Throwable throwable, String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.e(throwable, message, args);
         }
     }
 
     public static void i(String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.i(message, args);
         }
     }
 
     public static void v(String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.v(message, args);
         }
     }
 
     public static void w(String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.w(message, args);
         }
     }
 
     public static void wtf(String message, Object... args) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.wtf(message, args);
         }
     }
@@ -80,7 +80,7 @@ public class LogUtils {
      * @param json the json content
      */
     public static void json(String json) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.json(json);
         }
     }
@@ -91,7 +91,7 @@ public class LogUtils {
      * @param xml the xml content
      */
     public static void xml(String xml) {
-        if (PMApplication.getInstance().printer) {
+        if (PMApplication.printer) {
             Logger.xml(xml);
         }
     }

@@ -1,7 +1,13 @@
 package com.rr.pm.biz;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.view.View;
 
 import com.rr.pm.R;
@@ -30,8 +36,10 @@ import com.rr.pm.http.RxUtil;
 import com.rr.pm.http.service.ApiService;
 import com.rr.pm.util.LogUtils;
 import com.rr.pm.util.ToastUtils;
+import com.tencent.tinker.lib.tinker.TinkerInstaller;
 import com.xianglin.xlnodecore.common.service.facade.base.BaseReq;
 
+import java.io.File;
 import java.lang.reflect.Proxy;
 import java.util.ArrayList;
 
@@ -43,6 +51,7 @@ import java.util.ArrayList;
  * @email huangyang@xianglin.cn
  */
 public class MainActivity extends ToolbarActivity implements View.OnClickListener {
+    private static final int PRE_REQ_CODE = 0x100;
 
     @Override
     protected int getLayoutId() {
@@ -60,6 +69,8 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
         findViewById(R.id.btn_dynamic_proxy).setOnClickListener(this);
         findViewById(R.id.btn_icon).setOnClickListener(this);
         findViewById(R.id.btn_clock).setOnClickListener(this);
+        findViewById(R.id.btn_load_patch).setOnClickListener(this);
+        findViewById(R.id.btn_load_test).setOnClickListener(this);
         setToolBarTitle("首页");
         showBack(false);
         showRightTV(false);
@@ -88,6 +99,44 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
             testIconMarker();
         } else if (id == R.id.btn_clock) {
             testClock();
+        } else if (id == R.id.btn_load_patch) {
+            textLoadPatch();
+        } else if (id == R.id.btn_load_test) {
+            ToastUtils.show(this, "我是测试load patch");
+        }
+    }
+
+
+    private void textLoadPatch() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            int flag = ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE);
+            if (flag != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PRE_REQ_CODE);
+            } else {
+                loadPatch();
+            }
+        }
+    }
+
+    private void loadPatch() {
+        String filePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/patch_signed.apk";
+        File file = new File(filePath);
+        if (file.isFile() && file.exists()) {
+            TinkerInstaller.onReceiveUpgradePatch(getApplicationContext(), filePath);
+        } else {
+            ToastUtils.show(this, "补丁文件不存在!");
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == PRE_REQ_CODE) {
+            if (grantResults != null && grantResults.length > 0) {
+                loadPatch();
+            } else {
+                ToastUtils.show(this, "获取读取存储权限失败!");
+            }
         }
     }
 

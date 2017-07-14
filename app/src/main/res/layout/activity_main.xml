@@ -12,7 +12,7 @@
         android:id="@+id/btn_request"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dip"
+        android:layout_marginTop="20dip"
         android:text="Request" />
 
     <Button
@@ -56,4 +56,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="test clock" />
+
+    <Button
+        android:id="@+id/btn_load_patch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Load Patch" />
+
+    <Button
+        android:id="@+id/btn_load_test"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Load Test" />
 </LinearLayout>
