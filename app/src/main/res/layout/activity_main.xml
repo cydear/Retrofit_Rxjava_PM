@@ -44,4 +44,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Dynamic_Proxy" />
+
+    <Button
+        android:id="@+id/btn_icon"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test icon marker" />
+
+    <Button
+        android:id="@+id/btn_clock"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="test clock" />
 </LinearLayout>

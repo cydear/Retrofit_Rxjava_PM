@@ -1,5 +1,6 @@
 package com.rr.pm.biz;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -57,6 +58,8 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
         findViewById(R.id.btn_clone).setOnClickListener(this);
         findViewById(R.id.btn_policy).setOnClickListener(this);
         findViewById(R.id.btn_dynamic_proxy).setOnClickListener(this);
+        findViewById(R.id.btn_icon).setOnClickListener(this);
+        findViewById(R.id.btn_clock).setOnClickListener(this);
         setToolBarTitle("首页");
         showBack(false);
         showRightTV(false);
@@ -81,7 +84,15 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
             policy();
         } else if (id == R.id.btn_dynamic_proxy) {
             dynamic_proxy();
+        } else if (id == R.id.btn_icon) {
+            testIconMarker();
+        } else if (id == R.id.btn_clock) {
+            testClock();
         }
+    }
+
+    private void testIconMarker() {
+        startActivity(new Intent(this, TestIconActivity.class));
     }
 
     private void dynamic_proxy() {
@@ -191,5 +202,9 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
         Travel air = new AirTravel();
         tp.setTravel(air);
         tp.travel();
+    }
+
+    public void testClock() {
+        startActivity(new Intent(this, TestClockActivity.class));
     }
 }

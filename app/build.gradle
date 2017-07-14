@@ -151,4 +151,5 @@ dependencies {
     compile 'jp.wasabeef:glide-transformations:2.0.1'
     /*eventbus*/
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'junit:junit:4.12'
 }
