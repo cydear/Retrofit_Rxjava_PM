@@ -25,6 +25,19 @@
         </activity>
         <activity android:name=".biz.TestIconActivity" />
         <activity android:name=".biz.TestClockActivity" />
+
+        <service
+            android:name=".biz.LiveWall.ViewLiveWallpaper"
+            android:label="@string/app_name"
+            android:permission="android.permission.BIND_WALLPAPER"
+            android:process=":wallpaper">
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+            </intent-filter>
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/livewallpaper" />
+        </service>
     </application>
 
 </manifest>

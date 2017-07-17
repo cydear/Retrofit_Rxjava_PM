@@ -12,6 +12,7 @@ import android.view.View;
 
 import com.rr.pm.R;
 import com.rr.pm.base.ToolbarActivity;
+import com.rr.pm.biz.LiveWall.ViewLiveWallpaper;
 import com.rr.pm.constants.EVConstants;
 import com.rr.pm.designpattern.builder.Member;
 import com.rr.pm.data.bean.Response;
@@ -71,6 +72,7 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
         findViewById(R.id.btn_clock).setOnClickListener(this);
         findViewById(R.id.btn_load_patch).setOnClickListener(this);
         findViewById(R.id.btn_load_test).setOnClickListener(this);
+        findViewById(R.id.btn_wallpaper).setOnClickListener(this);
         setToolBarTitle("首页");
         showBack(false);
         showRightTV(false);
@@ -103,7 +105,13 @@ public class MainActivity extends ToolbarActivity implements View.OnClickListene
             textLoadPatch();
         } else if (id == R.id.btn_load_test) {
             ToastUtils.show(this, "我是测试load patch");
+        } else if (id == R.id.btn_wallpaper) {
+            testWallpaper();
         }
+    }
+
+    private void testWallpaper() {
+        ViewLiveWallpaper.setToWallpaper(this);
     }
 
 

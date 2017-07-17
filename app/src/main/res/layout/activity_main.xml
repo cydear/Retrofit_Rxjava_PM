@@ -8,64 +8,82 @@
 
     <include layout="@layout/view_toolbar" />
 
-    <Button
-        android:id="@+id/btn_request"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dip"
-        android:text="Request" />
+        android:layout_height="match_parent"
+        android:scrollbars="vertical">
 
-    <Button
-        android:id="@+id/btn_builder"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Builder" />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-    <Button
-        android:id="@+id/btn_observer"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Builder" />
+            <Button
+                android:id="@+id/btn_request"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dip"
+                android:text="Request" />
 
-    <Button
-        android:id="@+id/btn_clone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cloneable" />
+            <Button
+                android:id="@+id/btn_builder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Builder" />
 
-    <Button
-        android:id="@+id/btn_policy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Policy" />
+            <Button
+                android:id="@+id/btn_observer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Builder" />
 
-    <Button
-        android:id="@+id/btn_dynamic_proxy"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Dynamic_Proxy" />
+            <Button
+                android:id="@+id/btn_clone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Cloneable" />
 
-    <Button
-        android:id="@+id/btn_icon"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test icon marker" />
+            <Button
+                android:id="@+id/btn_policy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Policy" />
 
-    <Button
-        android:id="@+id/btn_clock"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="test clock" />
+            <Button
+                android:id="@+id/btn_dynamic_proxy"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dynamic_Proxy" />
 
-    <Button
-        android:id="@+id/btn_load_patch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Load Patch" />
+            <Button
+                android:id="@+id/btn_icon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test icon marker" />
 
-    <Button
-        android:id="@+id/btn_load_test"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Load Test" />
+            <Button
+                android:id="@+id/btn_clock"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="test clock" />
+
+            <Button
+                android:id="@+id/btn_load_patch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Load Patch" />
+
+            <Button
+                android:id="@+id/btn_load_test"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Load Test" />
+
+            <Button
+                android:id="@+id/btn_wallpaper"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Load Test" />
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>
