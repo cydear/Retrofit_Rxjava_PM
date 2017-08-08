@@ -84,6 +84,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Load Test" />
+
+            <Button
+                android:id="@+id/btn_capture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Android FileProvider适配" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

@@ -41,15 +41,17 @@ public class CustomCrashHandler implements Thread.UncaughtExceptionHandler {
         if (!handleException(e) && mDefaultHandler != null) {
             mDefaultHandler.uncaughtException(t, e);
         } else {
-            try {
-                Thread.sleep(2000);
-            } catch (InterruptedException e1) {
-                LogUtils.e(e1.getMessage());
-            }
-            android.os.Process.killProcess(android.os.Process.myPid());
-            System.exit(0);
-            //exit looper
-            Looper.myLooper().quit();
+            LogUtils.e(e.getMessage());
+//            try {
+//                LogUtils.e(e.getMessage());
+//                Thread.sleep(2000);
+//            } catch (InterruptedException e1) {
+//                LogUtils.e(e1.getMessage());
+//            }
+//            android.os.Process.killProcess(android.os.Process.myPid());
+//            System.exit(0);
+//            //exit looper
+//            Looper.myLooper().quit();
         }
     }
 
