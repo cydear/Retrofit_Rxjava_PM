@@ -107,4 +107,13 @@ public abstract class ToolbarActivity extends BaseActivity {
     protected void showRightTV(boolean visible) {
         mRightTv.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
+
+    /**
+     * show or hidden appbarlayout
+     *
+     * @param flag
+     */
+    protected void showAppbarLayout(boolean flag) {
+        mAppbarLayout.setVisibility(flag ? View.VISIBLE : View.GONE);
+    }
 }

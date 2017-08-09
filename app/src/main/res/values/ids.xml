@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="status_bar_value" type="id" />
+
+    <item name="home" type="id" />
+    <item name="discovery" type="id" />
+    <item name="circle" type="id" />
+    <item name="mine" type="id" />
+</resources>

@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
 
-        <activity android:name=".biz.MainActivity">
+        <activity android:name=".biz.TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -27,7 +27,7 @@
         </activity>
         <activity android:name=".biz.TestIconActivity" />
         <activity android:name=".biz.TestClockActivity" />
-        <activity android:name=".biz.main.CaptureActivity" />
+        <activity android:name=".biz.CaptureActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

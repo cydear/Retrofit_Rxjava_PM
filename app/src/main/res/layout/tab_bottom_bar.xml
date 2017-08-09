@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_gravity="bottom"
+    android:background="@color/colorPrimary"
+    android:orientation="horizontal">
+
+    <TextView
+        android:id="@+id/home_tab"
+        style="@style/main_tab_style"
+        android:drawableTop="@drawable/tab_home_selector"
+        android:text="首页" />
+
+    <TextView
+        android:id="@+id/discovery_tab"
+        style="@style/main_tab_style"
+        android:drawableTop="@drawable/tab_discover_selector"
+        android:text="发现" />
+
+    <TextView
+        android:id="@+id/circle_tab"
+        style="@style/main_tab_style"
+        android:drawableTop="@drawable/tab_circle_selector"
+        android:text="广场" />
+
+    <TextView
+        android:id="@+id/mine_tab"
+        style="@style/main_tab_style"
+        android:drawableTop="@drawable/tab_mine_selector"
+        android:text="我的" />
+</LinearLayout>

@@ -1,13 +1,19 @@
 package com.rr.pm.base;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.view.WindowManager;
 
+import com.rr.pm.R;
 import com.rr.pm.util.ActivityManagerTool;
 import com.rr.pm.util.ActivityUtils;
+import com.rr.pm.util.StatusBarUtils;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -27,6 +33,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityManagerTool.getActivityManager().add(this);
         setContentView(getLayoutId());
+        /*设置状态栏*/
+        setStatuBar();
         /*处理传递过来的intent*/
         handleIntent(getIntent());
         /*将Fragment添加至activity*/
@@ -37,6 +45,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         initClickListener();
         /*初始化数据*/
         initData();
+    }
+
+    protected void setStatuBar() {
+        StatusBarUtils.setColor(this, getResources().getColor(R.color.colorPrimary));
     }
 
     /*设置布局id*/

@@ -1,4 +1,4 @@
-package com.rr.pm.biz.main;
+package com.rr.pm.biz;
 
 import android.Manifest;
 import android.content.Intent;

@@ -7,8 +7,13 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
-    <color name="gray">#ccc</color>
     <color name="text666">#666</color>
     <color name="text999">#999</color>
     <color name="text333">#333</color>
+
+    <color name="gray">#ccc</color>
+    <color name="gray1">#ccc</color>
+    <color name="gray2">#aaaaaa</color>
+    <color name="gray3">#dcdcdc</color>
+    <color name="gray4">#f0eff5</color>
 </resources>

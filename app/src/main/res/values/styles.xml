@@ -38,4 +38,15 @@
         <!--秒针颜色-->
         <attr name="wb_second_pointer_color" format="color" />
     </declare-styleable>
+
+    <!--主页选项卡样式-->
+    <style name="main_tab_style">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:paddingTop">6dip</item>
+        <item name="android:textColor">@color/gray2</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 </resources>

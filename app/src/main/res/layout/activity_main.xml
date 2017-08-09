@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,88 +9,25 @@
 
     <include layout="@layout/view_toolbar" />
 
-    <ScrollView
+    <FrameLayout
+        android:id="@+id/content_frament"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:scrollbars="vertical">
+        android:layout_height="0dip"
+        android:layout_weight="1" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="@color/gray3" />
 
-            <Button
-                android:id="@+id/btn_request"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dip"
-                android:text="Request" />
-
-            <Button
-                android:id="@+id/btn_builder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Builder" />
-
-            <Button
-                android:id="@+id/btn_observer"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Builder" />
-
-            <Button
-                android:id="@+id/btn_clone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Cloneable" />
-
-            <Button
-                android:id="@+id/btn_policy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Policy" />
-
-            <Button
-                android:id="@+id/btn_dynamic_proxy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Dynamic_Proxy" />
-
-            <Button
-                android:id="@+id/btn_icon"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="test icon marker" />
-
-            <Button
-                android:id="@+id/btn_clock"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="test clock" />
-
-            <Button
-                android:id="@+id/btn_load_patch"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Load Patch" />
-
-            <Button
-                android:id="@+id/btn_load_test"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Load Test" />
-
-            <Button
-                android:id="@+id/btn_wallpaper"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Load Test" />
-
-            <Button
-                android:id="@+id/btn_capture"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Android FileProvider适配" />
-        </LinearLayout>
-    </ScrollView>
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab"
+        android:layout_width="match_parent"
+        android:layout_height="60dip"
+        android:textAlignment="center"
+        app:tabBackground="@color/colorPrimary"
+        app:tabIndicatorHeight="0dip"
+        app:tabPadding="0dip"
+        app:tabSelectedTextColor="@color/textColorPrimary"
+        app:tabTextColor="@color/gray2" />
 </LinearLayout>
