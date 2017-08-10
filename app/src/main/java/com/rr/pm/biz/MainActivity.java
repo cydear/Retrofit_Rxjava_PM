@@ -8,8 +8,6 @@ import com.rr.pm.base.ToolbarActivity;
 import com.rr.pm.biz.main.HomeFragment;
 
 /**
- * 原型模式
- *
  * @author huangyang
  * @version v 1.4.8 2017/4/18 XLXZ Exp $
  * @email huangyang@xianglin.cn

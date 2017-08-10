@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--自定义指示器-->
+    <declare-styleable name="CircleIndicatorView">
+        <!--指示器圆形的半径-->
+        <attr name="indicatorRadius" format="dimension" />
+        <!--指示器圆形的border宽度-->
+        <attr name="indicatorBorderWidth" format="dimension" />
+        <!--指示器间距-->
+        <attr name="indicatorSpace" format="dimension" />
+        <!--指示器文字的颜色-->
+        <attr name="indicatorTextColor" format="color" />
+        <!--指示器的颜色-->
+        <attr name="indicatorColor" format="color" />
+        <!--指示器被选中后的颜色-->
+        <attr name="indicatorSelectColor" format="color" />
+        <!--指示器模式: none  number  letter-->
+        <attr name="fill_mode">
+            <enum name="letter" value="0" />
+            <enum name="number" value="1" />
+            <enum name="none" value="2" />
+        </attr>
+    </declare-styleable>
+</resources>

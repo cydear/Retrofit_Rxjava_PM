@@ -19,7 +19,7 @@
         android:theme="@style/AppTheme"
         tools:replace="android:icon">
 
-        <activity android:name=".biz.TabActivity">
+        <activity android:name=".biz.main.TabActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,6 +28,7 @@
         <activity android:name=".biz.TestIconActivity" />
         <activity android:name=".biz.TestClockActivity" />
         <activity android:name=".biz.CaptureActivity" />
+        <activity android:name=".biz.viewpager.InditactorViewPagerActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"

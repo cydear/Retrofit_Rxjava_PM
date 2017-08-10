@@ -1,4 +1,4 @@
-package com.rr.pm.biz;
+package com.rr.pm.biz.main;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
