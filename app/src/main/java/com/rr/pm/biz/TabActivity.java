@@ -4,12 +4,16 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.TextView;
 
 import com.rr.pm.R;
 import com.rr.pm.base.ToolbarActivity;
+import com.rr.pm.biz.main.CircleFragment;
+import com.rr.pm.biz.main.DiscoveryFragment;
 import com.rr.pm.biz.main.HomeFragment;
+import com.rr.pm.biz.main.MineFragment;
 import com.rr.pm.util.LogUtils;
 import com.rr.pm.util.ToastUtils;
 
@@ -30,6 +34,9 @@ public class TabActivity extends ToolbarActivity {
 
     private TabLayout mTabLayout;
     private HomeFragment mHomeFragment;
+    private DiscoveryFragment mDiscoveryFragment;
+    private CircleFragment mCicleFragment;
+    private MineFragment mMineFragment;
 
     @Override
     protected int getLayoutId() {
@@ -58,6 +65,8 @@ public class TabActivity extends ToolbarActivity {
                         tabItem.setCompoundDrawables(null, handleDrawable(mTabRes[i]), null, null);
                     }
                 }
+
+                changeTab(tab);
             }
 
             @Override
@@ -80,8 +89,86 @@ public class TabActivity extends ToolbarActivity {
         }
 
         mHomeFragment = HomeFragment.newInstance();
+        mDiscoveryFragment = DiscoveryFragment.newInstance();
+        mCicleFragment = CircleFragment.newInstance();
+        mMineFragment = MineFragment.newInstance();
 
-        showAppbarLayout(false);
+        showAppbarLayout(true);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment homeFragment = getSupportFragmentManager().findFragmentByTag(HOME_TAB);
+        Fragment discoveryFragment = getSupportFragmentManager().findFragmentByTag(DISCOVERY_TAB);
+        Fragment circleFragment = getSupportFragmentManager().findFragmentByTag(CIRCLE_TAB);
+        Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MINE_TAB);
+
+        if (homeFragment == null) {
+            ft.add(getFragmentContentId(), mHomeFragment, HOME_TAB);
+        }
+        if (discoveryFragment == null) {
+            ft.add(getFragmentContentId(), mDiscoveryFragment, DISCOVERY_TAB).hide(mDiscoveryFragment);
+        }
+        if (circleFragment == null) {
+            ft.add(getFragmentContentId(), mCicleFragment, CIRCLE_TAB).hide(mCicleFragment);
+        }
+        if (mineFragment == null) {
+            ft.add(getFragmentContentId(), mMineFragment, MINE_TAB).hide(mMineFragment);
+        }
+
+        ft.commitAllowingStateLoss();
+    }
+
+    /**
+     * 切换Fragment
+     *
+     * @param tab
+     */
+    private void changeTab(TabLayout.Tab tab) {
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        Fragment homeFragment = getSupportFragmentManager().findFragmentByTag(HOME_TAB);
+        Fragment discoveryFragment = getSupportFragmentManager().findFragmentByTag(DISCOVERY_TAB);
+        Fragment circleFragment = getSupportFragmentManager().findFragmentByTag(CIRCLE_TAB);
+        Fragment mineFragment = getSupportFragmentManager().findFragmentByTag(MINE_TAB);
+        if (ft == null) {
+            return;
+        }
+        if (homeFragment == null || discoveryFragment == null || circleFragment == null || mineFragment == null) {
+            return;
+        }
+        int tabId = tab.getCustomView().getId();
+        switch (tabId) {
+            case R.id.home:
+                ft.show(homeFragment);
+                ft.hide(discoveryFragment);
+                ft.hide(circleFragment);
+                ft.hide(mineFragment);
+                ft.commitAllowingStateLoss();
+                setToolBarTitle("首页");
+                break;
+            case R.id.discovery:
+                ft.hide(homeFragment);
+                ft.show(discoveryFragment);
+                ft.hide(circleFragment);
+                ft.hide(mineFragment);
+                ft.commitAllowingStateLoss();
+                setToolBarTitle("发现");
+                break;
+            case R.id.circle:
+                ft.hide(homeFragment);
+                ft.hide(discoveryFragment);
+                ft.show(circleFragment);
+                ft.hide(mineFragment);
+                ft.commitAllowingStateLoss();
+                setToolBarTitle("广场");
+                break;
+            case R.id.mine:
+                ft.hide(homeFragment);
+                ft.hide(discoveryFragment);
+                ft.hide(circleFragment);
+                ft.show(mineFragment);
+                ft.commitAllowingStateLoss();
+                setToolBarTitle("我的");
+                break;
+        }
     }
 
     private Drawable handleDrawable(int resId) {
@@ -100,6 +187,6 @@ public class TabActivity extends ToolbarActivity {
 
     @Override
     protected Fragment getFragment() {
-        return HomeFragment.newInstance();
+        return null;
     }
 }

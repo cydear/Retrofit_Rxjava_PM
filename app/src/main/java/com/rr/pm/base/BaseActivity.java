@@ -49,6 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     protected void setStatuBar() {
         StatusBarUtils.setColor(this, getResources().getColor(R.color.colorPrimary));
+        //StatusBarUtils.setTransparent(this);
     }
 
     /*设置布局id*/
