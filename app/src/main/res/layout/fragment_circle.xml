@@ -2,11 +2,30 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginTop="48dip"
     android:gravity="center"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
+    <Button
+        android:id="@+id/btn_add"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cicle" />
+        android:text="Add" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/ll_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dip"
+            android:paddingRight="15dip">
+
+
+        </LinearLayout>
+
+    </ScrollView>
 </LinearLayout>

@@ -86,6 +86,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Android FileProvider适配" />
+
+            <Button
+                android:id="@+id/btn_socket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Socket跨进程通讯" />
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

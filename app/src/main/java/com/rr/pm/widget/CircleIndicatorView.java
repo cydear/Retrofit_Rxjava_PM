@@ -5,17 +5,23 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Rect;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.rr.pm.R;
 import com.rr.pm.util.DisplayUtils;
+import com.rr.pm.util.LogUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 /**
  * 自定义指示器
@@ -48,6 +54,9 @@ public class CircleIndicatorView extends View implements ViewPager.OnPageChangeL
     private FillMode fillMode;
     //选中的item
     private int selectPosition;
+    //ViewPager
+    private ViewPager viewPager;
+    private ScheduledExecutorService executorService;
 
 
     public CircleIndicatorView(Context context, @Nullable AttributeSet attrs) {
@@ -129,7 +138,7 @@ public class CircleIndicatorView extends View implements ViewPager.OnPageChangeL
             canvas.drawCircle(indicator.x, indicator.y, indicatorRadius, circlePaint);
 
             if (fillMode != FillMode.NONE) {
-                String value = (fillMode == FillMode.LETTER) ? LETTER[i] : String.valueOf(i+1);
+                String value = (fillMode == FillMode.LETTER) ? LETTER[i] : String.valueOf(i + 1);
 
                 Paint.FontMetrics fontMetrics = textPaint.getFontMetrics();
                 float fontHeight = fontMetrics.bottom - fontMetrics.top;
@@ -238,6 +247,61 @@ public class CircleIndicatorView extends View implements ViewPager.OnPageChangeL
     public void onPageScrollStateChanged(int state) {
 
     }
+
+    public void setViewPager(ViewPager viewPager) {
+        this.viewPager = viewPager;
+
+        this.viewPager.addOnPageChangeListener(this);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                float x = event.getX();
+                float y = event.getY();
+
+                for (int i = 0; i < indicators.size(); i++) {
+                    Indicator indicator = indicators.get(i);
+                    int leftMin = indicator.x - indicatorRadius - indicatorStrokWidth;
+                    int leftMax = indicator.x + indicatorRadius + indicatorStrokWidth;
+                    int topMin = indicator.y - indicatorRadius - indicatorStrokWidth;
+                    int topMax = indicator.y + indicatorRadius + indicatorStrokWidth;
+
+                    if (x > leftMin && x < leftMax && y > topMin && y < topMax) {
+                        this.viewPager.setCurrentItem(i, false);
+                        break;
+                    }
+                }
+                break;
+        }
+        return super.onTouchEvent(event);
+    }
+
+    public void startAutoScroll() {
+        if (executorService == null) {
+            executorService = Executors.newSingleThreadScheduledExecutor();
+        }
+        executorService.scheduleWithFixedDelay(new Task(), 2, 2, TimeUnit.SECONDS);
+    }
+
+    class Task implements Runnable {
+
+        @Override
+        public void run() {
+            mHandler.obtainMessage().sendToTarget();
+        }
+    }
+
+    private Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            LogUtils.d("==>1" + selectPosition);
+            selectPosition = (selectPosition + 1) % viewPager.getChildCount();
+            LogUtils.d("==>2" + selectPosition);
+            viewPager.setCurrentItem(selectPosition);
+        }
+    };
 
     /**
      * 指示器对象

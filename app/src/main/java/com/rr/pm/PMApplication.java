@@ -5,6 +5,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
+import android.os.StrictMode;
 import android.support.multidex.MultiDex;
 import android.support.multidex.MultiDexApplication;
 
@@ -46,6 +47,14 @@ public class PMApplication extends DefaultApplicationLike {
     @Override
     public synchronized void onCreate() {
         super.onCreate();
+
+        //关闭android 7.0 对传递file:// 触发FileUriExposedException 的严格策略校验
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            builder.detectFileUriExposure();
+            StrictMode.setVmPolicy(builder.build());
+        }
+
         instance = getApplication();
         initAssert();
     }

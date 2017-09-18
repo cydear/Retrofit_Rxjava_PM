@@ -29,6 +29,7 @@
         <activity android:name=".biz.TestClockActivity" />
         <activity android:name=".biz.CaptureActivity" />
         <activity android:name=".biz.viewpager.InditactorViewPagerActivity" />
+        <activity android:name=".socket.SocketCLientActivity" />
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -52,6 +53,10 @@
                 android:name="android.service.wallpaper"
                 android:resource="@xml/livewallpaper" />
         </service>
+
+        <service
+            android:name=".socket.SocketServer"
+            android:process=":remote" />
     </application>
 
 </manifest>

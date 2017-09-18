@@ -38,6 +38,7 @@ import com.rr.pm.http.HttpSyncApi;
 import com.rr.pm.http.RetrofitClient;
 import com.rr.pm.http.RxUtil;
 import com.rr.pm.http.service.ApiService;
+import com.rr.pm.socket.SocketCLientActivity;
 import com.rr.pm.util.LogUtils;
 import com.rr.pm.util.ToastUtils;
 import com.tencent.tinker.lib.tinker.TinkerInstaller;
@@ -78,6 +79,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         view.findViewById(R.id.btn_load_test).setOnClickListener(this);
         view.findViewById(R.id.btn_wallpaper).setOnClickListener(this);
         view.findViewById(R.id.btn_capture).setOnClickListener(this);
+        view.findViewById(R.id.btn_socket).setOnClickListener(this);
     }
 
     @Override
@@ -111,7 +113,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             testWallpaper();
         } else if (id == R.id.btn_capture) {
             testCapture();
+        } else if (id == R.id.btn_socket) {
+            testSocket();
         }
+    }
+
+    private void testSocket() {
+        startActivity(new Intent(getActivity(), SocketCLientActivity.class));
     }
 
     private void testCapture() {

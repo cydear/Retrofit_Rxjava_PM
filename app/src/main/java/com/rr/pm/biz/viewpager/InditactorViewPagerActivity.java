@@ -12,6 +12,8 @@ import com.rr.pm.R;
 import com.rr.pm.base.BaseActivity;
 import com.rr.pm.widget.CircleIndicatorView;
 
+import java.util.concurrent.Executors;
+
 /**
  * [类功能说明]
  *
@@ -38,9 +40,9 @@ public class InditactorViewPagerActivity extends BaseActivity {
 
         mViewPager.setAdapter(mAdapter);
 
-        mViewPager.addOnPageChangeListener(mCircleIndicatorView);
-
         mCircleIndicatorView.setCount(4);
+        mCircleIndicatorView.setViewPager(mViewPager);
+        mCircleIndicatorView.startAutoScroll();
     }
 
     class ViewPagerAdapter extends PagerAdapter {

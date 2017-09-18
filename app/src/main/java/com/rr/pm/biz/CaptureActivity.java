@@ -23,6 +23,7 @@ import com.rr.pm.util.FileProviderUtils;
 import com.rr.pm.util.ToastUtils;
 
 import java.io.File;
+import java.net.URI;
 import java.util.Date;
 
 /**
@@ -100,8 +101,11 @@ public class CaptureActivity extends BaseActivity {
              }*/
 
             //方式二
-            Uri fileUri = FileProviderUtils.getFileUri(this, file);
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+            //Uri fileUri = FileProviderUtils.getFileUri(this, file);
+            //intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);
+
+            //方式三：在Application的onCreate中关闭VmPolic对file:// 触发FileUriExposedException的严格校验检测
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
             startActivityForResult(intent, REQUEST_CODE_TAKE_PHOTO);
         }
     }
