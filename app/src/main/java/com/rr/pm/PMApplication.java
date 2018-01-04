@@ -48,15 +48,22 @@ public class PMApplication extends DefaultApplicationLike {
     public synchronized void onCreate() {
         super.onCreate();
 
-        //关闭android 7.0 对传递file:// 触发FileUriExposedException 的严格策略校验
+        //设置vm校验模式
+        setStrictModeStandard();
+
+        instance = getApplication();
+        initAssert();
+    }
+
+    /**
+     * 设置vm校验模式,启用触发FileUriExposedException 的严格策略校验
+     */
+    public void setStrictModeStandard() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             builder.detectFileUriExposure();
             StrictMode.setVmPolicy(builder.build());
         }
-
-        instance = getApplication();
-        initAssert();
     }
 
     private void initAssert() {
